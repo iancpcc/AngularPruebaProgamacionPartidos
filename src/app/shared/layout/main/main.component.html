@@ -1,0 +1,7 @@
+<img src="/assets/menu.png" (click)="toggleMenu()" alt="" class="m-2 cursor-pointer" />
+<app-header
+  [class]="isMenuOpen?'block':'hidden'  "
+  class="md:block transition-all duration-300"
+  (closeEvent)="toggleMenu()"
+></app-header>
+<router-outlet></router-outlet>
