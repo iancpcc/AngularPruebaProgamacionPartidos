@@ -1,0 +1,60 @@
+<main class="w-full h-screen pt-5 md:pt-20 text-center">
+  <h1 class="font-bold mb-10">Programación</h1>
+  <section>
+    <ng-container *ngIf="datesProgramation$ | async as dP">
+      @switch (dP.state ) { @case (DataState.LOADING) {
+      <app-spinner></app-spinner>
+      } @case (DataState.LOADED) {
+      <!-- Slider Fechas -->
+      <div class="p-2 flex w-[90%] md:w-1/2 gap-x-12 bg-gray-100 m-auto overflow-scroll">
+        @for (item of dP.data; track $index) {
+        <app-slider-programacion
+          [dateIn]="item"
+          [currentDateSelected]="currentDateSelected"
+          (dateOutEmmit)="onLoadCard($event)"
+        ></app-slider-programacion>
+        }
+      </div>
+      <!-- Banner Fecha -->
+      <div class="md:w-1/2 mt-5 m-auto text-white bg-green-400">
+        <span>{{
+          currentDateSelected
+            | dateFormat
+            | date : "EEEE, d MMMM 'del' y"
+            | titlecase
+        }}</span>
+      </div>
+      <!-- Slider Stadios -->
+      <section
+        class="flex gap-3 m-auto md:w-1/2 border-b-2 overflow-x-auto my-5 px-5 py-1"
+      >
+        @for (estadio of stadiums; track $index) {
+        <button
+          class="transition-all duration-500"
+          [ngClass]="{
+            'text-green-400 border-b border-green-400 ':
+              estadio === currentStadium
+          }"
+          (click)="loadMatchsByEstadium(estadio)"
+        >
+          {{ estadio }}
+        </button>
+        }
+      </section>
+      <!-- Section Cards -->
+      <div
+        class="w-[90%] md:w-1/2 m-auto grid grid-cols-1 md:grid-cols-2 gap-5 mt-10 transition-all duration-500"
+      >
+        <!-- Card -->
+        @for (item of matchsDescriptionFiltered ; track $index) {
+        <app-match-card [matchDescription]="item"></app-match-card>
+        }
+      </div>
+
+      } @case (DataState.ERROR) {
+      <app-alert-error></app-alert-error>
+      } }
+    </ng-container>
+  </section>
+  <section></section>
+</main>

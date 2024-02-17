@@ -1,0 +1,10 @@
+<button
+[ngClass]="{ 'text-green-400': dateIn.fecha === currentDateSelected }"
+(click)="onSelectDate(dateIn.fecha)"
+class="flex flex-col w-auto cursor-pointer p-1"
+>
+<!-- <span>{{dateIn.fecha }}</span> -->
+<span>{{
+  dateIn.fecha | dateFormat | date : "EEEE, d MMMM" | titlecase
+}}</span>
+</button>

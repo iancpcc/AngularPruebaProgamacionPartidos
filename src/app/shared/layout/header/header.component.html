@@ -1,0 +1,11 @@
+<header class=" bg-green-500 fixed flex justify-between items-center px-5 py-2 top-0 left-0 h-40 md:h-20 w-full">
+
+  <img class="hidden md:block w-10 h-10" src="/assets/shoot.png" alt="" srcset="">
+    <ul class="flex flex-col md:flex-row gap-2 text-white font-bold ">
+      <li class="border-l-2 border-white md:border-none "><span class="ml-1 cursor-pointer">Inicio</span></li>
+      <li class="border-l-2 border-white md:border-none "><span class="ml-1 cursor-pointer">Posiciones</span></li>
+      <li class="border-l-2 border-white md:border-none "><span class="ml-1 cursor-pointer">Programacion</span></li>
+      <li class="border-l-2 border-white md:border-none "><span class="ml-1 cursor-pointer">Calendario</span></li>
+    </ul>
+  <img (click)="closeEvent.emit(true)" class=" md:hidden cursor-pointer absolute top-2 right-2" src="/assets/close.png" alt="">
+</header>
